@@ -189,7 +189,7 @@ export default function Generator() {
         },
         body: JSON.stringify({
           topic,
-          tone: "Professional",
+          tone: "professional",
           length: "medium",
           cinematicMode: true,
         }),
@@ -220,7 +220,7 @@ export default function Generator() {
         },
         body: JSON.stringify({
           topic,
-          tone: "Professional",
+          tone: "professional",
           length: "medium",
           content: result,
           wordCount: result.split(" ").length,
