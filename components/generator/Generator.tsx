@@ -56,7 +56,7 @@
 //           "Content-Type": "application/json",
 //         },
 //         body: JSON.stringify({
-//           topic: topic, 
+//           topic: topic,
 //           tone: "Professional",
 //           length: "medium",
 //           content: result,
@@ -177,7 +177,6 @@ export default function Generator() {
 
   const API_URL = process.env.NEXT_PUBLIC_API_URL;
 
-
   const generate = async () => {
     try {
       setLoading(true);
@@ -197,7 +196,12 @@ export default function Generator() {
 
       const data = await res.json();
 
-      if (!data.success) throw new Error("Generation failed");
+      console.log("API RESPONSE:", data); // 👈 ADD THIS
+
+      if (!data.success) {
+        alert(data.error || "Generation failed");
+        return;
+      }
 
       setResult(data.data.content);
     } catch (err) {
@@ -208,7 +212,6 @@ export default function Generator() {
     }
   };
 
-  
   const saveToHistory = async () => {
     try {
       setSaving(true);
@@ -241,7 +244,6 @@ export default function Generator() {
       setSaving(false);
     }
   };
-
 
   const downloadPDF = async () => {
     try {
@@ -278,13 +280,9 @@ export default function Generator() {
         {loading ? "Generating..." : "Generate"}
       </button>
 
-      <button onClick={saveToHistory}>
-        {saving ? "Saving..." : "Save"}
-      </button>
+      <button onClick={saveToHistory}>{saving ? "Saving..." : "Save"}</button>
 
-      <button onClick={downloadPDF}>
-        Download PDF
-      </button>
+      <button onClick={downloadPDF}>Download PDF</button>
 
       <div>{result}</div>
     </div>
