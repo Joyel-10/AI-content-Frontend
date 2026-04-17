@@ -196,7 +196,7 @@ export default function Generator() {
 
       const data = await res.json();
 
-      console.log("API RESPONSE:", data); // 👈 ADD THIS
+      console.log("API RESPONSE:", data); 
 
       if (!data.success) {
         alert(data.error || "Generation failed");
